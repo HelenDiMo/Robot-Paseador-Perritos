@@ -16,9 +16,6 @@ He creado dos versiones del robot que comparten el mismo "cerebro" pero se ven d
 
 ---
 
-
----
-
 ## 🧠 Lógica de Funcionamiento
 
 ### ⚡ Gestión de Energía y Recursos
