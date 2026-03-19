@@ -4,43 +4,49 @@
 ![UI](https://img.shields.io/badge/Interfaz-Polimórfica-ff69b4?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Funcional-success?style=for-the-badge)
 
-**P.A.W.L-E** es un simulador de robot autónomo de acompañamiento canino desarrollado en Python. El proyecto implementa lógica de toma de decisiones en tiempo real, gestión de recursos limitados y un sistema de memoria persistente para el reconocimiento de usuarios.
+**P.A.W.L-E** es un simulador de robot autónomo para el acompañamiento canino. El proyecto implementa una arquitectura basada en **Programación Orientada a Objetos (POO)** que gestiona la supervivencia del hardware y el bienestar del animal mediante un motor de estados dinámico.
 
 ---
 
 ## 🚀 Acceso a las Aplicaciones
-El proyecto cuenta con dos versiones desplegadas que comparten el mismo núcleo lógico pero ofrecen experiencias de usuario (UX) distintas:
+
+El proyecto dispone de dos despliegues con el mismo núcleo lógico pero distintos enfoques de experiencia de usuario (UX):
 
 * ⚙️ [**Versión Técnica**](https://ais-pre-zuhzshpfk53v2elx3nekk7-366529865543.europe-west2.run.app): Enfoque minimalista y robótico, orientado a datos y monitorización de sistemas.
 * 🌸 [**Versión Kawaii**](https://ais-pre-dcriwrnpytpoi2i2tbx5or-366529865543.europe-west2.run.app/): Diseñada para una conexión emocional, con mensajes amigables y estética colorida.
 
 ---
+## 🗺️ Navegación y Prevención de Riesgos
 
+A diferencia de los simuladores lineales, P.A.W.L-E incorpora un **Sistema de Escaneo de Ruta** (`escanear_ruta`) activo durante toda la misión:
+
+* **Radar de Superficie (30% prob.):** Detecta peligros en tiempo real como charcos, barro, cristales o asfalto caliente.
+* **Recalculado de Ruta:** Al detectar un obstáculo, el robot ejecuta una maniobra evasiva automática para proteger la integridad física del perro.
+* **Coste de Maniobra:** Cada evasión consume un **-2% adicional de batería**, simulando el esfuerzo mecánico de los servomotores al cambiar de trayectoria.
+  
 ## 🧠 Lógica de Funcionamiento
 
 El robot opera bajo un **motor de estados** que evalúa variables críticas cada 5 minutos de tiempo simulado:
 
 ### ⚡ Gestión de Energía y Recursos
-* **Modo Exploración:** Gasto de batería del **12%** por tramo mientras interactúa con el entorno.
-* **Protocolo de Retorno (Modo Ahorro):** Si la batería cae por debajo del **40%** o se agotan las bolsas de residuos, el robot prioriza la supervivencia reduciendo el consumo al **4%**.
-* **Eventos Aleatorios:**
-    * **Recarga Solar (20% prob.):** El robot detecta luz solar y recupera un **10%** de energía.
-    * **Evento Biológico (50% prob.):** El perro realiza sus necesidades, restando una bolsa del inventario.
+* **Consumo Estándar:** -12% de batería por tramo de actividad.
+* **Protocolo de Retorno:** Se activa automáticamente si la `Batería < 40%` o `Bolsas <= 1`. El robot entra en modo ahorro reduciendo el consumo a un **-4%**.
+* **Autorecarga Solar (`autorecarga`):** Probabilidad del 20% de detectar luz solar, recuperando un **+10%** de energía.
+* **Gestión de Residuos:** Probabilidad del 50% de deposiciones caninas, consumiendo **1 bolsa** por evento.
 
 ### 💾 Memoria de Usuario (Persistence)
-El sistema utiliza un registro global para identificar a los perros por su nombre:
-* **Nuevos Usuarios:** Crea un perfil único en el primer encuentro.
-* **Usuarios Recurrentes:** Reconoce al perro y contabiliza el historial de paseos realizados, personalizando el saludo inicial.
-
+El sistema utiliza un registro global para identificar a los perros por su nombre, permitiendo:
+* Reconocimiento de usuarios recurrentes.
+* Seguimiento del historial de paseos acumulados por cada perfil.
 ---
 
 ## 🛠️ Arquitectura Técnica
 
-El código sigue el paradigma de **Programación Orientada a Objetos (POO)**:
+El código está organizado para facilitar su escalabilidad:
 
-1. **`RobotPaseador` (Clase):** Define el estado (batería, bolsas, felicidad) y las acciones base (saludar, pasear, autodiagnóstico).
-2. **`REGISTRO_PERROS` (Data Store):** Diccionario persistente durante la sesión que almacena la frecuencia de uso.
-3. **Loop de Misión:** Bucle principal que procesa la lógica de tiempo, eventos estocásticos y condiciones de parada.
+1. **Clase `RobotPaseador`**: Encapsula todos los métodos de acción (`saludar`, `pasear`, `autorecarga`, `escanear_ruta`).
+2. **Bucle de Misión**: Motor estocástico que procesa el tiempo y los eventos aleatorios.
+3. **Métricas**: Generación de un historial de batería y tiempo para su posterior análisis gráfico.
 
 ---
 
@@ -54,3 +60,5 @@ Al finalizar cada simulación, el sistema genera:
 
 ## 👩‍💻 Sobre este proyecto
 Este simulador ha sido creado como un proyecto de aprendizaje en **Desarrollo de Software e Inteligencia Artificial**, demostrando la capacidad de separar la lógica de negocio (Backend) de la presentación visual (Frontend).
+
+Desarrollado como proyecto final de aprendizaje en **Desarrollo de Software e IA**, centrando el foco en la resiliencia de sistemas autónomos y la creación de interfaces adaptativas.
