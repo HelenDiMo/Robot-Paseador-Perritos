@@ -1,4 +1,4 @@
-# 🐾 P.A.W.L-E: Personal Assistant for Walking & Leisure Entities
+# 🐾 P.A.W.L-E: Protocolo Automático de Walkies y Limpieza Estándar
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![UI](https://img.shields.io/badge/Interfaz-Polimórfica-ff69b4?style=for-the-badge)
