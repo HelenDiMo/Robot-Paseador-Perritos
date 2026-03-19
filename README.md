@@ -4,61 +4,59 @@
 ![UI](https://img.shields.io/badge/Interfaz-Polimórfica-ff69b4?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Funcional-success?style=for-the-badge)
 
-**P.A.W.L-E** es un simulador de robot autónomo para el acompañamiento canino. El proyecto implementa una arquitectura basada en **Programación Orientada a Objetos (POO)** que gestiona la supervivencia del hardware y el bienestar del animal mediante un motor de estados dinámico.
+**P.A.W.L-E** es un simulador de robot autónomo diseñado para pasear perros. El proyecto utiliza lógica de programación para que el robot tome sus propias decisiones, gestione su energía y reconozca a sus "clientes" caninos.
 
 ---
 
 ## 🚀 Acceso a las Aplicaciones
+He creado dos versiones del robot que comparten el mismo "cerebro" pero se ven de forma diferente:
 
-El proyecto dispone de dos despliegues con el mismo núcleo lógico pero distintos enfoques de experiencia de usuario (UX):
-
-* ⚙️ [**Versión Técnica**](https://ais-pre-zuhzshpfk53v2elx3nekk7-366529865543.europe-west2.run.app): Enfoque minimalista y robótico, orientado a datos y monitorización de sistemas.
-* 🌸 [**Versión Kawaii**](https://ais-pre-dcriwrnpytpoi2i2tbx5or-366529865543.europe-west2.run.app/): Diseñada para una conexión emocional, con mensajes amigables y estética colorida.
+* 🌸 [**Versión Kawaii**](https://ais-pre-zuhzshpfk53v2elx3nekk7-366529865543.europe-west2.run.app): Una interfaz amigable, con emojis y mensajes cariñosos.
+* ⚙️ [**Versión Técnica (Seriota)**](https://ais-pre-dcriwrnpytpoi2i2tbx5or-366529865543.europe-west2.run.app/): Un enfoque minimalista centrado en los datos y el estado del sistema.
 
 ---
+
 ## 🗺️ Navegación y Prevención de Riesgos
 
-A diferencia de los simuladores lineales, P.A.W.L-E incorpora un **Sistema de Escaneo de Ruta** (`escanear_ruta`) activo durante toda la misión:
+P.A.W.L-E no solo camina, sino que analiza el suelo por donde pasa gracias a su **Radar de Superficie**:
 
-* **Radar de Superficie (30% prob.):** Detecta peligros en tiempo real como charcos, barro, cristales o asfalto caliente.
-* **Recalculado de Ruta:** Al detectar un obstáculo, el robot ejecuta una maniobra evasiva automática para proteger la integridad física del perro.
-* **Coste de Maniobra:** Cada evasión consume un **-2% adicional de batería**, simulando el esfuerzo mecánico de los servomotores al cambiar de trayectoria.
-  
-## 🧠 Lógica de Funcionamiento
+* **Detección de Obstáculos:** En cada paso hay un **30% de probabilidad** de encontrar peligros como charcos, barro, cristales o asfalto caliente.
+* **Esquive Automático:** Si detecta un riesgo, el robot avisa por pantalla y cambia la ruta para proteger al perro.
+* **Gasto de Energía:** Maniobrar para evitar un obstáculo consume un **-2% extra de batería**, lo que obliga al robot a ser más eficiente.
 
-El robot opera bajo un **motor de estados** que evalúa variables críticas cada 5 minutos de tiempo simulado:
-
-### ⚡ Gestión de Energía y Recursos
-* **Consumo Estándar:** -12% de batería por tramo de actividad.
-* **Protocolo de Retorno:** Se activa automáticamente si la `Batería < 40%` o `Bolsas <= 1`. El robot entra en modo ahorro reduciendo el consumo a un **-4%**.
-* **Autorecarga Solar (`autorecarga`):** Probabilidad del 20% de detectar luz solar, recuperando un **+10%** de energía.
-* **Gestión de Residuos:** Probabilidad del 50% de deposiciones caninas, consumiendo **1 bolsa** por evento.
-
-### 💾 Memoria de Usuario (Persistence)
-El sistema utiliza un registro global para identificar a los perros por su nombre, permitiendo:
-* Reconocimiento de usuarios recurrentes.
-* Seguimiento del historial de paseos acumulados por cada perfil.
 ---
 
-## 🛠️ Arquitectura Técnica
+## 🧠 Lógica de Funcionamiento
 
-El código está organizado para facilitar su escalabilidad:
+### ⚡ Gestión de Energía y Recursos
+* **Modo Paseo:** Gasta un **12%** de batería mientras juega y pasea normal.
+* **Protocolo de Retorno:** Si la batería baja del **40%** o se queda con **1 sola bolsa**, el robot activa el modo ahorro y vuelve directo a casa gastando solo un **4%**.
+* **Eventos del Azar:** El robot puede recargar energía si sale el **Sol (+10%)** o gastar una **Bolsa (-1)** si el perro hace sus necesidades.
 
-1. **Clase `RobotPaseador`**: Encapsula todos los métodos de acción (`saludar`, `pasear`, `autorecarga`, `escanear_ruta`).
-2. **Bucle de Misión**: Motor estocástico que procesa el tiempo y los eventos aleatorios.
-3. **Métricas**: Generación de un historial de batería y tiempo para su posterior análisis gráfico.
+### 💾 Memoria de Usuarios
+El robot tiene "memoria" gracias a un registro de nombres:
+* **Reconocimiento:** Si un perro ya ha paseado con él, el robot lo reconoce y le da una bienvenida especial.
+* **Historial:** Lleva la cuenta de cuántos paseos han compartido juntos.
 
 ---
 
 ## 📊 Reporte de Misión
-Al finalizar cada simulación, el sistema genera:
-* **Gráfica de Consumo:** Un historial detallado del nivel de batería frente al tiempo.
-* **Índice de Felicidad:** Métrica acumulada basada en la calidad y duración del paseo.
-* **Diagnóstico Final:** Estado de integridad del hardware tras la misión.
+Al terminar el paseo, el sistema muestra un resumen de datos:
+* **Evolución de Batería:** Una lista con el nivel de energía minuto a minuto.
+* **Índice de Felicidad:** Cuántos puntos de alegría ha conseguido el perro.
+* **Diagnóstico Final:** Un chequeo de cómo han terminado los sistemas del robot.
 
 ---
 
 ## 👩‍💻 Sobre este proyecto
-Este simulador ha sido creado como un proyecto de aprendizaje en **Desarrollo de Software e Inteligencia Artificial**, demostrando la capacidad de separar la lógica de negocio (Backend) de la presentación visual (Frontend).
 
-Desarrollado como proyecto final de aprendizaje en **Desarrollo de Software e IA**, centrando el foco en la resiliencia de sistemas autónomos y la creación de interfaces adaptativas.
+Este simulador ha sido mi proyecto práctico en el curso de **Introducción a la IA (80h)** de **[Fundación Somos F5](https://www.somosf5.org/)**. 
+
+Al crear a P.A.W.L-E, he practicado conceptos básicos que son la base para entender cómo funcionan los programas inteligentes:
+
+* **Programación con Clases (POO):** He organizado el código creando una "plantilla" (`RobotPaseador`) para que el robot sepa quién es, cuánta batería tiene y qué acciones puede hacer.
+* **Toma de decisiones y Azar:** He programado al robot para que reaccione a cosas que pasan por sorpresa, como que aparezca un charco o que el perro necesite una bolsa.
+* **Control de Energía:** He diseñado un sistema para que el robot vigile su propia batería y decida por sí mismo cuándo es hora de volver a casa para no quedarse tirado.
+* **Manejo de Datos:** He aprendido a usar diccionarios para guardar los nombres de los perros y listas para registrar cómo va cambiando la energía durante la misión.
+
+En resumen, he convertido un problema de la vida real en un **algoritmo funcional** que sabe reaccionar a su entorno.
