@@ -11,8 +11,8 @@
 ## 🚀 Acceso a las Aplicaciones
 El proyecto cuenta con dos versiones desplegadas que comparten el mismo núcleo lógico pero ofrecen experiencias de usuario (UX) distintas:
 
-* ⚙️ [**Versión Técnica**](https://ais-pre-zuhzshpfk53v2elx3nekk7-366529865543.europe-west2.run.app): Diseñada para una conexión emocional, con mensajes amigables y estética colorida.
-* 🌸 [**Versión Kawaii**](https://ais-pre-dcriwrnpytpoi2i2tbx5or-366529865543.europe-west2.run.app/): Enfoque minimalista orientado a datos y monitorización de sistemas.
+* ⚙️ [**Versión Técnica**](https://ais-pre-zuhzshpfk53v2elx3nekk7-366529865543.europe-west2.run.app): Enfoque minimalista y robótico, orientado a datos y monitorización de sistemas.
+* 🌸 [**Versión Kawaii**](https://ais-pre-dcriwrnpytpoi2i2tbx5or-366529865543.europe-west2.run.app/): Diseñada para una conexión emocional, con mensajes amigables y estética colorida.
 
 ---
 
